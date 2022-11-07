@@ -1,0 +1,8 @@
+<application flex-direction="vertical" color="35,50,69" weights="0.05;0.95">
+    <section flex-direction="horizontal" color="0,0,0,0">
+        <button text="Open File" event="updateTBString" text-size="14" colors="0,0,0,0;0,0,0,64;0,0,0,64"/>
+        <button text="Save File" event="save" text-size="14" colors="0,0,0,0;0,0,0,64;0,0,0,64"/>
+        <button text="Run" event="run" text-size="14" colors="0,0,0,0;0,0,0,64;0,0,0,64"/>
+    </section>
+    <entry/>
+</application>

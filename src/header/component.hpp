@@ -29,6 +29,7 @@ namespace ui {
             virtual void display(sf::RenderWindow& window);
             void updatePointers();
             const sf::Vector2f getMinimumSize() const;
+            std::shared_ptr<ui::Component> operator[](std::size_t idx);
 
         protected:
 
@@ -37,7 +38,7 @@ namespace ui {
             sf::VertexArray m_vertices;
             sf::Color color;
             sf::Texture m_texture;
-            std::vector<std::shared_ptr<ui::Component>> m_childs;
+            std::vector<std::shared_ptr<ui::Component>> m_children;
         
         private:
 

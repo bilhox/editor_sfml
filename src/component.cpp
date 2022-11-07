@@ -17,6 +17,13 @@ bool ui::Component::events(sf::Event& event , sf::Window& window){
     return false;
 }
 
+std::shared_ptr<ui::Component> ui::Component::operator[](std::size_t idx){
+    if(idx < 0 || idx >= std::size(m_children))
+        throw std::out_of_range("No child at index : "+std::to_string(idx));
+    
+    return m_children[idx];
+}
+
 sf::Cursor::Type ui::Component::getCursorState(sf::Vector2i mpos){
     return sf::Cursor::Arrow;
 }
@@ -67,8 +74,8 @@ const sf::Vector2f ui::Component::getPosition(bool global) const {
 }
 
 void ui::Component::updatePointers(){
-    if(std::size(m_childs) != 0){
-        for(auto & child : m_childs){
+    if(std::size(m_children) != 0){
+        for(auto & child : m_children){
             child->parent = this;
             child->updatePointers();
         }

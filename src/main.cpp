@@ -14,19 +14,9 @@
 #include <memory>
 #include <utility>
 
-sf::Color color;
-
-void foo(){
-    std::random_device rd;
-    std::mt19937 gen(rd());
-    std::uniform_int_distribution dist(1,10);
-
-    color = sf::Color(128+sin(dist(gen))*128 , 128+(cos(dist(gen))/2.f)*128 , 128+128*sin(dist(gen))*cos(dist(gen)));
-}
-
 int main()
 {
-    auto tree = parse("./assets/this.xml");
+    auto tree = parse("../assets/this.xml");
     auto parcours = tree.postfixeParcours();
 
 
@@ -35,7 +25,9 @@ int main()
     ui::Application application {sf::Vector2f{window.getSize()} , ui::Direction::Vertical};
 
     std::unordered_map<std::string , std::function<void()>> events;
-    events["printSomething"] = std::bind(printSomething , &application);
+    events["updateTBString"] = std::bind(updateTBString , &application);
+    events["run"] = std::bind(run , &application);
+    events["save"] = std::bind(save , &application);
 
     application.load(tree , events);
 
@@ -94,7 +86,7 @@ int main()
 
         auto mpos {sf::Mouse::getPosition(window)};
 
-        window.clear(color);
+        window.clear(sf::Color::Black);
 
         // draw + cursor
         bool cursor_set {false};

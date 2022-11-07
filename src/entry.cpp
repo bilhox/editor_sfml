@@ -140,12 +140,14 @@ void ui::Entry::draw(sf::RenderTarget& target , sf::RenderStates states) const {
 
 }
 
+
+
 ui::Entry::Entry(sf::Vector2f size){
 
     this->resize(size);
     this->focus = false;
 
-    if(!this->font.loadFromFile("./assets/font/CourierPrime.ttf")){
+    if(!this->font.loadFromFile("../assets/font/CourierPrime.ttf")){
         std::cout << "Failed to load font for ui::Entry::Entry object : " << &*this << std::endl;
     }
 
@@ -234,7 +236,6 @@ void ui::Entry::updateScrollbar(ui::Direction direction){
 void ui::Entry::remove_line(unsigned int index){
     if (index >= 0 && index < std::size(this->lines)){
         this->lines.erase(this->lines.begin()+index);
-        this->visibility_x.erase(this->visibility_x.begin()+index);
         this->set_visibleLines();
         this->content_size_y -= static_cast<int>(this->cursor_t.getSize().y);
         this->updateScrollbar(ui::Direction::Vertical);
@@ -244,10 +245,8 @@ void ui::Entry::remove_line(unsigned int index){
 void ui::Entry::add_line(std::string line , int index){
     if (index < 0){
         this->lines.push_back(line);
-        this->visibility_x.push_back({0,0});
     } else {
         this->lines.insert(this->lines.begin()+index , line);
-        this->visibility_x.insert(this->visibility_x.begin()+index , {0,0});
     }
     this->content_size_y += static_cast<int>(this->cursor_t.getSize().y);
     this->updateScrollbar(ui::Direction::Vertical);
@@ -564,5 +563,22 @@ void ui::Entry::update(float dt){
         this->insideOffset.x = 0;
 
     }
+}
+
+void ui::Entry::setString(std::vector<std::string> & lines){
+    this->lines.clear();
+    this->lines = lines;
+    this->cursor[0] = 0;
+    this->cursor[1] = 0;
+    content_size_x = this->getMaxLineWidth();
+    content_size_y = 4+std::size(lines)*cursor_t.getSize().y;
+    this->set_visibleLines();
+    this->set_cursorPos();
+    this->updateScrollbar(ui::Direction::Horizontal);
+    this->updateScrollbar(ui::Direction::Vertical);
+}
+
+const std::vector<std::string> ui::Entry::getString() const {
+    return lines;
 }
 

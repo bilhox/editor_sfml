@@ -3,6 +3,8 @@
 
 #include "application.hpp"
 
-void printSomething(ui::Application * application);
+void updateTBString(ui::Application * application);
+void run(ui::Application * application);
+void save(ui::Application * application);
 
 #endif // EVENTS_HPP

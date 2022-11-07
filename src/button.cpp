@@ -21,7 +21,7 @@ ui::Button::Button(sf::Vector2f size , std::string text){
 
     this->text.setString(text);
     this->text.setCharacterSize(20);
-    this->font.loadFromFile("./assets/font/static/RobotoMono-Regular.ttf");
+    this->font.loadFromFile("../assets/font/static/RobotoMono-Regular.ttf");
     this->text.setFont(this->font);
     this->text.setLineSpacing(-1);
     this->text.setOrigin(sf::Vector2f(this->text.getLocalBounds().getPosition() + this->text.getGlobalBounds().getSize()/2.f));

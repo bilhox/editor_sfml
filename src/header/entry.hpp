@@ -20,6 +20,8 @@ namespace ui {
         void resize(sf::Vector2f size);
         sf::Cursor::Type getCursorState(sf::Vector2i mpos);
         long getContentSize();
+        void setString(std::vector<std::string> & lines);
+        const std::vector<std::string> getString() const;
 
     private:
 
