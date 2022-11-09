@@ -97,6 +97,16 @@ bool ui::Application::load(Tree & tree , std::unordered_map<std::string , std::f
             }
             tempCompList.emplace_back(std::static_pointer_cast<ui::Component>(button));
         }
+        else if (node->tag == "textbox"){
+            std::shared_ptr<ui::TextBox> textbox = std::make_shared<ui::TextBox>(sf::Vector2f{50 , 50});
+
+            if(!node->orphean){
+                std::cout << "XML build failed , entry tag must be orphean" << std::endl;
+                return false;
+            }
+
+            tempCompList.emplace_back(std::static_pointer_cast<ui::Component>(textbox));
+        }
         else if (node->tag == "entry"){
             std::shared_ptr<ui::Entry> entry = std::make_shared<ui::Entry>(sf::Vector2f{50 , 50});
 

@@ -3,8 +3,9 @@
 
 #include "application.hpp"
 
-void updateTBString(ui::Application * application);
+void openFile(ui::Application * application);
 void run(ui::Application * application);
 void save(ui::Application * application);
+void pastePath(ui::Application * application);
 
 #endif // EVENTS_HPP

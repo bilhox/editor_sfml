@@ -25,9 +25,10 @@ int main()
     ui::Application application {sf::Vector2f{window.getSize()} , ui::Direction::Vertical};
 
     std::unordered_map<std::string , std::function<void()>> events;
-    events["updateTBString"] = std::bind(updateTBString , &application);
+    events["openFile"] = std::bind(openFile , &application);
     events["run"] = std::bind(run , &application);
     events["save"] = std::bind(save , &application);
+    events["pastePath"] = std::bind(pastePath , &application);
 
     application.load(tree , events);
 
@@ -71,8 +72,12 @@ int main()
                     window.close();
                     break;
                 case sf::Event::Resized:
-                    {sf::FloatRect visibleArea(0.f , 0.f , event.size.width , event.size.height);
-                    window.setView(sf::View(visibleArea));}
+                    if(event.size.width >= 600 && event.size.height >= 450){
+                    sf::FloatRect visibleArea(0.f , 0.f , event.size.width , event.size.height);
+                    window.setView(sf::View(visibleArea));
+                    } else {
+                        window.setSize(sf::Vector2u(600 , 450));
+                    }
                     break;
                 default:
                     break;

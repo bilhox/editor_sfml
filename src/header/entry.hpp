@@ -10,11 +10,11 @@
 
 namespace ui {
 
-    class Entry : public ui::Component{
+    class TextBox : public ui::Component{
 
     public:
 
-        Entry(sf::Vector2f size);
+        TextBox(sf::Vector2f size);
         void update(float dt);
         bool events(sf::Event& event , sf::Window& window);
         void resize(sf::Vector2f size);
@@ -70,9 +70,45 @@ namespace ui {
         unsigned long getMaxLineWidth();
         // To draw the component
         virtual void draw(sf::RenderTarget &target , sf::RenderStates states) const;
-        
+    };
 
-};
+    class Entry : public ui::Component {
+
+        public :
+
+            Entry(sf::Vector2f size);
+            void update(float dt);
+            bool events(sf::Event& event , sf::Window& window);
+            sf::Cursor::Type getCursorState(sf::Vector2i mpos);
+            void setString(std::string & text);
+            const std::string getString() const;
+        
+        private:
+
+            sf::Text text_renderer;
+            sf::Font font;
+
+            std::string text;
+            unsigned int maxLength;
+            long long content_size {2};
+            bool focus;
+            float cursor_state_change_time;
+            float cursor_state_change_timer;
+
+            int cursor;
+            bool draw_cursor;
+            sf::RectangleShape cursor_t;
+            float glyph_width;
+
+            float insideOffset;
+
+            void followCursor();
+
+            // set the texture cursor pos
+            void set_cursorPos();
+
+            virtual void draw(sf::RenderTarget & target , sf::RenderStates states) const;
+    };
 }
 
 #endif

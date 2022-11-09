@@ -1,8 +1,15 @@
 <application flex-direction="vertical" color="35,50,69" weights="0.05;0.95">
-    <section flex-direction="horizontal" color="0,0,0,0">
-        <button text="Open File" event="updateTBString" text-size="14" colors="0,0,0,0;0,0,0,64;0,0,0,64"/>
-        <button text="Save File" event="save" text-size="14" colors="0,0,0,0;0,0,0,64;0,0,0,64"/>
-        <button text="Run" event="run" text-size="14" colors="0,0,0,0;0,0,0,64;0,0,0,64"/>
+    <section weights="0.8;0.2" flex-direction="horizontal" color="0,0,0,0">
+        <section color="25,40,59" flex-direction="horizontal" weights="0.2;0.6;0.1;0.1">
+            <button text="Open" event="openFile" text-size="14" colors="0,0,0,0;0,0,0,64;0,0,0,64"/>
+            <entry/>
+            <button text="Paste" event="pastePath" text-size="12" colors="0,0,0,0;0,0,0,64;0,0,0,64"/>
+            <button text="Delete" text-size="12" colors="0,0,0,0;0,0,0,64;0,0,0,64"/>
+        </section>
+        <section color="0,0,0,0" flex-direction="horizontal">
+            <button text="Save" event="save" text-size="14" colors="0,0,0,0;0,0,0,64;0,0,0,64"/>
+            <button text="Run" event="run" text-size="14" colors="0,0,0,0;0,0,0,64;0,0,0,64"/>
+        </section>
     </section>
-    <entry/>
+    <textbox/>
 </application>
