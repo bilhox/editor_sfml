@@ -20,7 +20,7 @@ int main()
     auto parcours = tree.postfixeParcours();
 
 
-    sf::RenderWindow window(sf::VideoMode(800, 600), "Something" , sf::Style::Default);
+    sf::RenderWindow window(sf::VideoMode(800, 600), "Editeur de texte - V0.1" , sf::Style::Default);
 
     ui::Application application {sf::Vector2f{window.getSize()} , ui::Direction::Vertical};
 
@@ -36,9 +36,9 @@ int main()
     sf::Clock clock;
     float dt = 0;
 
-    float average{};
-    int n_value{0};
-    float fps {0};
+    // float average{};
+    // int n_value{0};
+    // float fps {0};
 
     std::array<sf::Cursor , 3> cursors {};
 
@@ -53,17 +53,17 @@ int main()
         
         dt = clock.getElapsedTime().asSeconds();
         clock.restart();
-        average += dt;
-        n_value ++;
+        // average += dt;
+        // n_value ++;
 
-        if(n_value >= 50){
-            n_value = 0;
-            fps = 1.f/(average / 50.f);
-            average = 0;
-            std::ostringstream ss;
-            ss << "FPS : " << fps;
-            window.setTitle(ss.str());
-        }
+        // if(n_value >= 50){
+        //     n_value = 0;
+        //     fps = 1.f/(average / 50.f);
+        //     average = 0;
+        //     std::ostringstream ss;
+        //     ss << "FPS : " << fps;
+        //     window.setTitle(ss.str());
+        // }
 
         sf::Event event;
 
