@@ -20,7 +20,7 @@ int main()
     auto parcours = tree.postfixeParcours();
 
 
-    sf::RenderWindow window(sf::VideoMode(800, 600), "Editeur de texte - V0.1" , sf::Style::Default);
+    sf::RenderWindow window(sf::VideoMode(800, 600), "Textpen - V0.1" , sf::Style::Default);
 
     ui::Application application {sf::Vector2f{window.getSize()} , ui::Direction::Vertical};
 
