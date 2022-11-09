@@ -80,7 +80,7 @@ namespace ui {
             void update(float dt);
             bool events(sf::Event& event , sf::Window& window);
             sf::Cursor::Type getCursorState(sf::Vector2i mpos);
-            void setString(std::string & text);
+            void setString(std::string text);
             const std::string getString() const;
         
         private:

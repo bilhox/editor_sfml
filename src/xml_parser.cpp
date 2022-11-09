@@ -111,9 +111,12 @@ const std::vector<Tree> Tree::get_childs() const{
 Tree parse(const char* file){
 
     std::ifstream fs {file};
+    // File content
     std::string lines;
+    // content of one specific line
     std::string line;
 
+    // getting the whole file content
     while(std::getline(fs , line)){
         lines += line;
     }
@@ -122,6 +125,7 @@ Tree parse(const char* file){
     std::vector<std::string> parts;
     std::vector<std::string> contents;
 
+    // cutting every part like : [tag,content,tag,content ...]
     while(sindex != -1){
         
         auto findex = lines.find('>' , sindex);

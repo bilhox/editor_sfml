@@ -29,6 +29,7 @@ int main()
     events["run"] = std::bind(run , &application);
     events["save"] = std::bind(save , &application);
     events["pastePath"] = std::bind(pastePath , &application);
+    events["deletePath"] = std::bind(deletePath , &application);
 
     application.load(tree , events);
 

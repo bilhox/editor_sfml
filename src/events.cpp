@@ -4,8 +4,18 @@
 #include <string>
 #include <regex>
 #include <filesystem>
+#include "header/utils.hpp"
 
 std::filesystem::path file {""};
+
+bool containsOnlyASCII(const std::string& filePath) {
+  for (auto c: filePath) {
+    if (static_cast<unsigned char>(c) > 127) {
+      return false;
+    }
+  }
+  return true;
+}
 
 void openFile(ui::Application * application){
     auto entry = std::dynamic_pointer_cast<ui::TextBox>((*application)[1]);
@@ -25,6 +35,11 @@ void openFile(ui::Application * application){
     std::string line;
 
     while(std::getline(fs , line)){
+        if(!containsOnlyASCII(line)){
+            std::cout << "The file opening process stopped because it contains non ASCII characters\n"
+                      << "Note that it'll be changed in the future" << std::endl;
+            return;
+        }
         lines.push_back(line);
     }
 
@@ -46,14 +61,11 @@ void pastePath(ui::Application * application){
     
     std::string path = sf::Clipboard::getString();
     pathEntry->setString(path);
+}
 
-    // std::string path = sf::Clipboard::getString();
-    // std::cout << path << std::endl;
-    // std::regex pathRegex {"^(?:[A-Z]:|[.]{1,2})(\\[a-zA-Z\\\\s]+)+\\.(py|txt|js|cpp|hpp|c|html|css|h|xml|json)$"};
-    // std::smatch match;
-    // if(std::regex_match(path , match , pathRegex)){
-    //     std::cout << "done" << std::endl;
-    // }
+void deletePath(ui::Application * application){
+    auto pathEntry = std::dynamic_pointer_cast<ui::Entry>((*(*(*application)[0])[0])[1]);
+    pathEntry->setString("");
 }
 
 void run(ui::Application * application){
@@ -67,11 +79,11 @@ void run(ui::Application * application){
 }
 
 void save(ui::Application * application){
-    if(file.empty())
+    if(!std::filesystem::exists(file.string()))
         return;
     auto entry = std::dynamic_pointer_cast<ui::TextBox>((*application)[1]);
     auto content = entry->getString();
-    std::ofstream fwritter {file.root_path().string()};
+    std::ofstream fwritter {file.string()};
 
     for(auto & line : content){
         fwritter << line << std::endl;

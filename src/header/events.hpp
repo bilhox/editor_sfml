@@ -7,5 +7,6 @@ void openFile(ui::Application * application);
 void run(ui::Application * application);
 void save(ui::Application * application);
 void pastePath(ui::Application * application);
+void deletePath(ui::Application * application);
 
 #endif // EVENTS_HPP

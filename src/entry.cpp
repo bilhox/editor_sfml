@@ -666,34 +666,33 @@ bool ui::Entry::events(sf::Event & event , sf::Window & window){
             this->focus = collide_pr(this->rect , mpos);
             this->draw_cursor = this->focus;
 
-            mpos -= this->getPosition(false);
+            // mpos -= this->getPosition(false);
 
-            if (this->focus){
-                auto mpos_offset {mpos};
-                mpos_offset.x -= this->insideOffset;
+            // if (this->focus){
+            //     auto mpos_offset {mpos};
+            //     mpos_offset.x -= this->insideOffset;
 
-                bool cursor_x{false};
+            //     bool cursor_x{false};
 
-                for(int i = 0 ; i <= std::size(this->text);i++){
-                    if(i*this->glyph_width+4 >= mpos_offset.x){
-                        if(mpos_offset.x-((i-1)*this->glyph_width+4) < i*this->glyph_width+4-mpos_offset.x){
-                            this->cursor = i-1;
-                        }
-                        else {
-                            this->cursor = i;
-                        }
-                        cursor_x = true;
-                        break;
-                    }
-                }
+            //     // for(int i = 0 ; i <= std::size(this->text);i++){
+            //     //     if(i*this->glyph_width+4 >= mpos_offset.x){
+            //     //         if(mpos_offset.x-((i-1)*this->glyph_width+4) < i*this->glyph_width+4-mpos_offset.x){
+            //     //             this->cursor = i-1;
+            //     //         }
+            //     //         else {
+            //     //             this->cursor = i;
+            //     //         }
+            //     //         cursor_x = true;
+            //     //         break;
+            //     //     }
+            //     // }
 
-                if (!cursor_x){
-                    this->cursor = std::size(this->text);
-                }
+            //     // if (!cursor_x){
+            //     //     this->cursor = std::size(this->text);
+            //     // }
 
-                this->set_cursorPos();
-            }
-
+            // }
+            this->set_cursorPos();
             break;
         
         case sf::Event::KeyPressed:
@@ -781,7 +780,7 @@ sf::Cursor::Type ui::Entry::getCursorState(sf::Vector2i mpos){
 
 }
 
-void ui::Entry::setString(std::string & text){
+void ui::Entry::setString(std::string text){
     this->text.clear();
     this->text.assign(text);
     this->cursor = 0;
